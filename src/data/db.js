@@ -336,7 +336,6 @@ The system integrates visual perception, depth sensing, and motion planning to a
             role: "Core Member",
             id: "zibin-wu",
             avatar: getPath("assets/images/team/wzb.jpg"),
-            image: getPath("assets/images/engineering/put.gif"),
             links: [{ label: "Email", url: "mailto:zwu945@connect.hkust-gz.edu.cn" }],
             bio: "Male / 2002. Student at HKUST(GZ).",
             content: `
@@ -354,6 +353,8 @@ The system integrates visual perception, depth sensing, and motion planning to a
             name: "Wei Liu",
             role: "Core Member",
             id: "wei-liu",
+            avatar: getPath("assets/images/team/lw.jpg"),
+            links: [{ label: "HomePage", url: "https://willliu322.github.io" }],
             content: "Content to be added."
         },
         {
