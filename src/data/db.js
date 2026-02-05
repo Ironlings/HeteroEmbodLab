@@ -1,5 +1,4 @@
 
-
 const baseUrl = import.meta.env.BASE_URL;
 
 // Helper to handle path concatenation cleanly
@@ -74,7 +73,7 @@ He served as PC Co-Chair for VLDB 2019 and is currently the Editor-in-Chief of I
         recruitment: {
             title: "Join Us",
             desc: "We are looking for students with skills in:",
-            skills: ["Python, C++, ROS 2 (Nav2)", "Isaac Lab, Gazebo Sim, Mujoco", "Deep RL (PPO/SAC), Visual Navigation, Event Camera Localization"],
+            skills: ["Python, C++, ROS 2", "LLM", "RL", "VLA"],
             contact: {
                 email: "Ironlings@hkust-gz.edu.cn",
                 github: "https://github.com/Ironlings"
@@ -140,23 +139,6 @@ This project focuses on **Failure Awareness + System-Level Decision Making**, ra
         `
             },
             {
-                id: "unmanned-cart",
-                title: "Unmanned Cart Delivery",
-                image: getPath("assets/images/research/unmanned_cart.png"),
-                tags: ["Nav2", "Service Robot"],
-                description: "Multi-floor delivery service using unmanned carts.",
-                keywords: ["Nav2"],
-                content: `
-## Overview
-
-This project implements an autonomous delivery service capable of navigating across different floors.
-
-**Key Features:**
-- **Multi-floor Navigation**: Seamlessly integrates elevator riding capability.
-- **Nav2 Stack**: Utilizes the ROS2 Navigation 2 stack for robust path planning and obstacle avoidance.
-        `
-            },
-            {
                 id: "simulation-platform",
                 title: "Simulation Platform Construction",
                 image: getPath("assets/images/research/sim_platform.png"),
@@ -183,29 +165,55 @@ This platform allows us to validate embodied AI interaction logic before real-wo
         philosophy: "We focus on 'Can the system really run in the real world?', emphasizing system-level integration, failure handling, and real-world deployment.",
         projects: [
             {
-                id: "elevator",
-                title: "Autonomous Elevator Riding",
-                image: getPath("assets/images/engineering/elevator.png"),
+                id: "navigation",
+                title: "Multi-floor Navigation System",
+                image: getPath("assets/images/engineering/nav.gif"),
                 owners: [
                     { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") },
                     { name: "Beirong Cui" }
                 ],
-                tags: ["YOLOv11", "FSM", "HRI", "Real-World Deployment"],
-                description: "Real-world autonomous elevator riding system for robots.",
+                links: [{ label: "Video", url: "" }],
+                tags: ["ROS2", "ICP", "Nav2"],
+                description: "A multi-floor localization and autonomous navigation system for a four-wheeled mobile platform.",
                 content: `
 ## Project Overview
-An autonomous system enabling robots to operate elevators in real-world environments without human intervention.
+This project focuses on developing a multi-floor localization and autonomous navigation system for an unmanned four-wheeled mobile platform, capable of safely and efficiently operating in complex indoor environments.
+
+The system addresses challenges such as localization drift, environment transitions, and dynamic obstacles during cross-floor operations, demanding high levels of autonomous perception and navigation safety.
+
+**Work Highlights:**
+- **System Design**: Built on ROS2, the platform supports multi-floor mapping, elevator-based floor transitions, and multi-task state switching.
+- **Perception & Navigation**: Fuses laser and visual sensing to enable real-time static and dynamic obstacle avoidance.
+- **Scene Understanding**: Uses YOLOv11 for indoor scene perception, allowing automatic recognition and classification of multi-floor environments.
+- **Results**: Achieved stable localization and autonomous navigation across multiple floors, including safe elevator operation and dynamic obstacle avoidance. 
+
+        `
+            },
+            {
+                id: "elevator",
+                title: "Floor & Lift Door Detection",
+                image: getPath("assets/images/engineering/liftdetect.png"),
+                owners: [
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
+                ],
+                tags: ["YOLOv11"],
+                description: "Collect and annotate images of elevator floor indicators (1–6) and lift door states (open/closed), and train a YOLOv11-based model for robust elevator perception and classification in real-world environments.",
+                content: `
+## Project Overview
+This project aims to build an autonomous elevator perception module that enables mobile robots to recognize and interact with elevators in real-world indoor environments without human assistance.
+
+The system focuses on accurately identifying elevator floor indicators and lift door states, providing reliable visual input for downstream navigation and control modules.
 
 **Techniques:**
-- **YOLOv11**: For accurate detection of elevator buttons, doors, and floor indicators.
-- **FSM (Finite State Machine)**: To manage the complex logic flow of calling, entering, selecting floors, and exiting elevators.
-- **Human-Robot Interaction**: Handling scenarios with other passengers in the elevator.
+- **YOLOv11**: Trained on a custom-labeled dataset to detect elevator floor numbers (1–6) and lift door states (open/closed) with high robustness under varying lighting and viewpoints.
+
+
         `
             },
             {
                 id: "bag-detection",
                 title: "Bag Detection & Grasping",
-                image: getPath("assets/images/engineering/bag_detection.png"),
+                image: getPath("assets/images/engineering/grasp.gif"),
                 owners: [
                     { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
                 ],
@@ -222,22 +230,63 @@ A robust system for detecting and grasping bags in unstructured environments.
         `
             },
             {
-                id: "digital-twin",
-                title: "Digital Twin System",
-                image: getPath("assets/images/engineering/digital_twin.png"),
+                id: "bag-handing",
+                title: "Bag Handing",
+                image: getPath("assets/images/engineering/put.gif"),
                 owners: [
                     { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
                 ],
-                tags: ["Isaac Sim", "Gazebo", "Sim-to-Real", "Failure Reproduction"],
-                description: "Digital twin system for failure reproduction and sim-to-real testing.",
+                tags: ["ArUco", "RGB-D", "ROS2", "MoveIt"],
+                description: "Detect and localize basket using ArUco markers and RGB-D sensing, enabling reliable handover from a mobile manipulator to a legged robot.",
                 content: `
 ## Project Overview
-A Digital Twin system designed to bridge the gap between simulation and reality.
+This project develops a robust bag handover system that enables a mobile manipulator to autonomously pass a bag to a legged robot in indoor environments.
+
+By integrating visual perception, depth sensing, and motion planning, the system ensures accurate localization and safe, reliable manipulation during the handover process.
+
+**Highlights:**
+- **Perception**: Utilizes ArUco marker detection with RGB-D depth information for precise basket localization and pose estimation.
+- **Manipulation**: Integrated with ROS2 and MoveIt to plan and execute handover trajectories.
+- **Performance**: Achieved over 70% success rate in bag grasping and handover experiments.
+
+        `
+            },
+            {
+                id: "digital-twin",
+                title: "Digital Twin System",
+                image: getPath("assets/images/engineering/twin.png"),
+                owners: [
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
+                ],
+                tags: ["XR", "Digital Twins", "Nav2"],
+                description: "Digital twin system for XR.",
+                content: `
+## Project Overview
+A Digital Twin system designed to bridge the gap between virtual and reality.
+
+
+        `
+            },
+            {
+                id: "panel",
+                title: "Panel Alignment",
+                image: getPath("assets/images/engineering/align.gif"),
+                owners: [
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
+                ],
+                tags: ["SAM3", "RGB-D", "MoveIt", "ROS2"],
+                description: "Develops an autonomous system for aligning a mobile platform with elevator panels.",
+                content: `
+## Project Overview
+This project develops a system for autonomously aligning a mobile robot with elevator panels, ensuring accurate positioning for safe button pressing and interaction.
+
+The system integrates visual perception, depth sensing, and motion planning to allow the robot to approach and align with panels reliably, even under varying viewpoints and lighting conditions.
 
 **Key Functions:**
-- **Failure Reproduction**: Recreating real-world failure cases in simulation to analyze root causes.
-- **Sim-to-Real**: Validating algorithms in a high-fidelity digital replica before deploying to physical hardware.
-- ** Platforms**: Leverages Isaac Sim and Gazebo.
+- **Panel Detection**: Uses SAM3 combined with RGB-D sensing to segment and locate elevator panels accurately.
+- **Pose Alignment**: Computes optimal approach trajectories using ROS2 and MoveIt for precise positioning relative to the panel.
+- **Performance**: Tested under real-world conditions, achieving high alignment accuracy.
+
         `
             }
         ]
@@ -287,6 +336,7 @@ A Digital Twin system designed to bridge the gap between simulation and reality.
             role: "Core Member",
             id: "zibin-wu",
             avatar: getPath("assets/images/team/wzb.jpg"),
+            image: getPath("assets/images/engineering/put.gif"),
             links: [{ label: "Email", url: "mailto:zwu945@connect.hkust-gz.edu.cn" }],
             bio: "Male / 2002. Student at HKUST(GZ).",
             content: `
@@ -295,19 +345,9 @@ A Digital Twin system designed to bridge the gap between simulation and reality.
 * **Sun Yat-sen University** — Artificial Intelligence: 2021.09 - 2025.07
 * **HKUST(GZ)** — Big Data Intelligence: 2025.09 - Present
 
-## Projects
 
-### 🛗 YOLOv11-based Indoor Floor Recognition
-* Utilized YOLOv11 for indoor scene perception to automatically recognize and classify floors.
-* Achieved >98% accuracy, significantly improving efficiency.
 
-### 🤖 Unmanned Mobile Platform Navigation
-* Designed localization and navigation for a 4-wheel mobile platform in multi-floor environments based on ROS2.
-* Implemented map management, elevator riding, and task switching.
 
-### 🦾 Manipulator Recognition & Grasping
-* Fused RGB and depth information; used SAM3 for object recognition and localization.
-* Optimized grasping strategies with >80% success rate.
       `
         },
         {
