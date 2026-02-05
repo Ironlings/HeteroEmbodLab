@@ -1,4 +1,14 @@
 
+
+const baseUrl = import.meta.env.BASE_URL;
+
+// Helper to handle path concatenation cleanly
+const getPath = (path) => {
+    // Remove leading slash if exists to avoid double slashes with baseUrl which usually ends in slash
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${baseUrl}${cleanPath}`;
+};
+
 export const siteData = {
     home: {
         hero: {
@@ -9,12 +19,12 @@ export const siteData = {
         focusAreas: [
             {
                 title: "High-fidelity Simulation & RL",
-                image: "/assets/images/isaac-lab.jpg",
+                image: getPath("assets/images/isaac-lab.jpg"),
                 description: "Building large-scale, high-fidelity RL training environments based on NVIDIA Isaac Lab to study motion and decision-making in complex terrains, narrow spaces, and uncertain conditions."
             },
             {
                 title: "Embodied AI Real-world Deployment",
-                image: "/assets/images/quadruped-robot.jpg",
+                image: getPath("assets/images/quadruped-robot.jpg"),
                 description: "Deploying learning-based policies and system-level safety mechanisms to quadruped robots to achieve narrow passage traversal, failure recovery, and autonomous navigation in complex scenarios."
             }
         ],
@@ -38,7 +48,7 @@ Research is ongoing and targeting submission to **IROS / RSS**.
         professor: {
             name: "Prof. Lei Chen",
             title: "Chair Professor · Dean of Information Hub",
-            avatar: "/assets/images/team/LeiChen.jpg",
+            avatar: getPath("assets/images/team/LeiChen.jpg"),
             website: "https://facultyprofiles.hkust-gz.edu.cn/faculty-personal-page/CHEN-Lei/leichen",
             bio: `Lei Chen received his PhD in Computer Science from the University of Waterloo, Canada.
 
@@ -78,9 +88,9 @@ He served as PC Co-Chair for VLDB 2019 and is currently the Editor-in-Chief of I
             {
                 id: "narrow-passage",
                 title: "Narrow Passage Navigation",
-                image: "/assets/images/research/1.png",
+                image: getPath("assets/images/research/1.png"),
                 tags: ["Embodied AI", "Reinforcement Learning", "Navigation"],
-                owner: { name: "Xiaotian Zou", avatar: "/assets/images/team/xiaotian.jpg" },
+                owner: { name: "Xiaotian Zou", avatar: getPath("assets/images/team/xiaotian.jpg") },
                 description: "Addressing localization and path planning for quadruped robots in narrow environments, optimized with Control Barrier Functions (CBF).",
                 keywords: ["Nav2", "Isaac Lab", "Control Barrier Functions"],
                 content: `
@@ -132,7 +142,7 @@ This project focuses on **Failure Awareness + System-Level Decision Making**, ra
             {
                 id: "unmanned-cart",
                 title: "Unmanned Cart Delivery",
-                image: "/assets/images/research/unmanned_cart.png",
+                image: getPath("assets/images/research/unmanned_cart.png"),
                 tags: ["Nav2", "Service Robot"],
                 description: "Multi-floor delivery service using unmanned carts.",
                 keywords: ["Nav2"],
@@ -149,7 +159,7 @@ This project implements an autonomous delivery service capable of navigating acr
             {
                 id: "simulation-platform",
                 title: "Simulation Platform Construction",
-                image: "/assets/images/research/sim_platform.png",
+                image: getPath("assets/images/research/sim_platform.png"),
                 tags: ["Isaac Lab", "Gazebo", "Sim-to-Real"],
                 description: "Large-scale RL training using NVIDIA Isaac Lab/Gym and Gazebo on Ubuntu 22.04, building embodied AI interaction logic.",
                 keywords: ["NVIDIA Isaac Lab", "Gazebo"],
@@ -175,9 +185,9 @@ This platform allows us to validate embodied AI interaction logic before real-wo
             {
                 id: "elevator",
                 title: "Autonomous Elevator Riding",
-                image: "/assets/images/engineering/elevator.png",
+                image: getPath("assets/images/engineering/elevator.png"),
                 owners: [
-                    { name: "Zibin Wu", avatar: "/assets/images/team/wzb.jpg" },
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") },
                     { name: "Beirong Cui" }
                 ],
                 tags: ["YOLOv11", "FSM", "HRI", "Real-World Deployment"],
@@ -195,9 +205,9 @@ An autonomous system enabling robots to operate elevators in real-world environm
             {
                 id: "bag-detection",
                 title: "Bag Detection & Grasping",
-                image: "/assets/images/engineering/bag_detection.png",
+                image: getPath("assets/images/engineering/bag_detection.png"),
                 owners: [
-                    { name: "Zibin Wu", avatar: "/assets/images/team/wzb.jpg" }
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
                 ],
                 tags: ["SAM 3", "RGB-D", "ROS2", "MoveIt"],
                 description: "Bag detection and grasping using RGB-D and SAM 3.",
@@ -214,9 +224,9 @@ A robust system for detecting and grasping bags in unstructured environments.
             {
                 id: "digital-twin",
                 title: "Digital Twin System",
-                image: "/assets/images/engineering/digital_twin.png",
+                image: getPath("assets/images/engineering/digital_twin.png"),
                 owners: [
-                    { name: "Zibin Wu", avatar: "/assets/images/team/wzb.jpg" }
+                    { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") }
                 ],
                 tags: ["Isaac Sim", "Gazebo", "Sim-to-Real", "Failure Reproduction"],
                 description: "Digital twin system for failure reproduction and sim-to-real testing.",
@@ -237,7 +247,7 @@ A Digital Twin system designed to bridge the gap between simulation and reality.
             name: "Xiaotian Zou",
             role: "Core Member",
             id: "xiaotian-zou",
-            avatar: "/assets/images/team/xiaotian.jpg",
+            avatar: getPath("assets/images/team/xiaotian.jpg"),
             links: [{ label: "GitHub", url: "https://github.com/jacksonzouxiaotian" }, { label: "Email", url: "mailto:2627283077@qq.com" }],
             bio: "I am Xiaotian Zou, currently focusing on Embodied AI for Quadruped Robots. My work aims to enable robots to achieve high-level autonomous motion and navigation in complex, unknown environments.",
             content: `
@@ -276,7 +286,7 @@ A Digital Twin system designed to bridge the gap between simulation and reality.
             name: "Zibin Wu",
             role: "Core Member",
             id: "zibin-wu",
-            avatar: "/assets/images/team/wzb.jpg",
+            avatar: getPath("assets/images/team/wzb.jpg"),
             links: [{ label: "Email", url: "mailto:zwu945@connect.hkust-gz.edu.cn" }],
             bio: "Male / 2002. Student at HKUST(GZ).",
             content: `

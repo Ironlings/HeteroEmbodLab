@@ -13,7 +13,7 @@ const Navbar = () => {
         >
             <div className="container nav-content">
                 <NavLink to="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <img src="/assets/images/logo.png" alt="HeteroEmbod Lab Logo" style={{ height: '40px', width: 'auto' }} />
+                    <img src={`${import.meta.env.BASE_URL}assets/images/logo.png`} alt="HeteroEmbod Lab Logo" style={{ height: '40px', width: 'auto' }} />
                     HeteroEmbod Lab
                 </NavLink>
 
