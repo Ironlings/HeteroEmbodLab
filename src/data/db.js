@@ -172,7 +172,6 @@ This platform allows us to validate embodied AI interaction logic before real-wo
                     { name: "Zibin Wu", avatar: getPath("assets/images/team/wzb.jpg") },
                     { name: "Beirong Cui" }
                 ],
-                links: [{ label: "Video", url: "" }],
                 tags: ["ROS2", "ICP", "Nav2"],
                 description: "A multi-floor localization and autonomous navigation system for a four-wheeled mobile platform.",
                 content: `
@@ -186,6 +185,8 @@ The system addresses challenges such as localization drift, environment transiti
 - **Perception & Navigation**: Fuses laser and visual sensing to enable real-time static and dynamic obstacle avoidance.
 - **Scene Understanding**: Uses YOLOv11 for indoor scene perception, allowing automatic recognition and classification of multi-floor environments.
 - **Results**: Achieved stable localization and autonomous navigation across multiple floors, including safe elevator operation and dynamic obstacle avoidance. 
+
+[video]https://player.bilibili.com/player.html?isOutside=true&aid=115920798221556&bvid=BV1VJkeBdEce&cid=35822112230&p=1
 
         `
             },
@@ -264,7 +265,7 @@ By integrating visual perception, depth sensing, and motion planning, the system
 ## Project Overview
 A Digital Twin system designed to bridge the gap between virtual and reality.
 
-
+[video]https://player.bilibili.com/player.html?isOutside=true&aid=115977488500756&bvid=BV1Yr6FBdEax&cid=35685270967&p=1
         `
             },
             {

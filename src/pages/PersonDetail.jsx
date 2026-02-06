@@ -54,7 +54,7 @@ const PersonDetail = () => {
 
                     {/* Info */}
                     <div style={{ flex: 1 }}>
-                        <Link to="/people" style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', marginBottom: '1rem', display: 'inline-block' }}>&larr; Back to Team</Link>
+                        <Link to="/team" style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', marginBottom: '1rem', display: 'inline-block' }}>&larr; Back to Team</Link>
                         <h1 style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>{person.name}</h1>
                         <p style={{ fontSize: '1.25rem', color: 'var(--color-text-accent)', fontWeight: '500', marginBottom: '1rem' }}>{person.role}</p>
 

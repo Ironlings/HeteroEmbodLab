@@ -22,7 +22,7 @@ const People = () => {
                 gap: '2.5rem'
             }}>
                 {people.map((person, idx) => (
-                    <Link to={`/people/${person.id}`} key={idx} style={{ display: 'flex', flexDirection: 'column', height: '100%', textDecoration: 'none' }}>
+                    <Link to={`/team/${person.id}`} key={idx} style={{ display: 'flex', flexDirection: 'column', height: '100%', textDecoration: 'none' }}>
                         <motion.div
                             className="card"
                             whileHover={{ y: -8 }}

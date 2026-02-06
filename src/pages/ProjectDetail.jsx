@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { siteData } from '../data/db';
@@ -27,9 +26,81 @@ const ProjectDetail = () => {
         );
     }
 
+    // Helper function to extract video ID from YouTube URL
+    const getYouTubeEmbedUrl = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        const videoId = (match && match[2].length === 11) ? match[2] : null;
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    };
+
+    // Helper function to extract video ID from Vimeo URL
+    const getVimeoEmbedUrl = (url) => {
+        const regExp = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/;
+        const match = url.match(regExp);
+        const videoId = match ? match[3] : null;
+        return videoId ? `https://player.vimeo.com/video/${videoId}` : null;
+    };
+
     const renderContent = (content) => {
         if (!content) return null;
         return content.split('\n').map((line, index) => {
+            // Video embedding support
+            if (line.startsWith('[video]')) {
+                const videoUrl = line.replace('[video]', '').trim();
+                let embedUrl = null;
+                
+                // Check for YouTube
+                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                    embedUrl = getYouTubeEmbedUrl(videoUrl);
+                } 
+                // Check for Vimeo
+                else if (videoUrl.includes('vimeo.com')) {
+                    embedUrl = getVimeoEmbedUrl(videoUrl);
+                }
+                // Generic iframe support
+                else if (videoUrl.startsWith('http')) {
+                    embedUrl = videoUrl;
+                }
+
+                if (embedUrl) {
+                    return (
+                        <div key={index} style={{ margin: '2rem 0' }}>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                style={{ 
+                                    position: 'relative',
+                                    paddingBottom: '56.25%', // 16:9 Aspect Ratio
+                                    height: 0,
+                                    overflow: 'hidden',
+                                    borderRadius: 'var(--radius-lg)',
+                                    boxShadow: 'var(--shadow-lg)',
+                                    maxWidth: '100%'
+                                }}
+                            >
+                                <iframe
+                                    src={embedUrl}
+                                    style={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 0
+                                    }}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title={`Video ${index}`}
+                                />
+                            </motion.div>
+                        </div>
+                    );
+                }
+                return null;
+            }
+
+            // Existing content rendering
             if (line.startsWith('## ')) return <h2 key={index} style={{ marginTop: '2rem', marginBottom: '1rem' }}>{parseMarkdown(line.replace('## ', ''))}</h2>;
             if (line.startsWith('### ')) return <h3 key={index} style={{ marginTop: '1.5rem', marginBottom: '0.75rem' }}>{parseMarkdown(line.replace('### ', ''))}</h3>;
             if (line.startsWith('- ')) return <li key={index} style={{ marginLeft: '1.5rem', marginBottom: '0.5rem' }}>{parseMarkdown(line.replace('- ', ''))}</li>;
