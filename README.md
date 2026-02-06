@@ -1,3 +1,11 @@
+# To Update Website
+```bash
+git add .
+git commit -m "Update content"
+git push origin main
+# npm install (for the first time)
+npm run deploy
+```
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

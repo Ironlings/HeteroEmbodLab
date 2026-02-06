@@ -45,10 +45,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/research" element={<Research />} />
               <Route path="/engineering" element={<Engineering />} />
-              <Route path="/people" element={<People />} />
+              <Route path="/team" element={<People />} />
               <Route path="/research/:id" element={<ProjectDetail />} />
               <Route path="/engineering/:id" element={<ProjectDetail />} />
-              <Route path="/people/:id" element={<PersonDetail />} />
+              <Route path="/team/:id" element={<PersonDetail />} />
             </Routes>
           </AnimatePresence>
         </main>

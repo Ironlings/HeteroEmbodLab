@@ -28,7 +28,7 @@ const Navbar = () => {
                         Engineering
                     </NavLink>
                     <NavLink to="/people" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                        People
+                        Team
                     </NavLink>
                 </div>
             </div>
